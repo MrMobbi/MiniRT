@@ -1,10 +1,20 @@
+# Ignore editor folder
 /.idea/
+/.vscode/
+.DS_Store
+
+# Ignore minilibx files
 libmlx/**/*.o
 libmlx/**/*.swiftdoc
 libmlx/**/*.swiftmodule
 libmlx/**/*.swiftsourceinfo
-minirt
-.DS_Store
-/objs/**/*.o
-/.vscode/
 libmlx.dylib
+
+# Ignore libft obj
+/libft/*.o
+
+# Ignore obj
+/objs/**/*.o
+
+# Ignore executable
+minirt
