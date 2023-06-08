@@ -20,12 +20,8 @@ GNL			= libs/gnl
 
 	###	LIBS ###
 
-LIBS		= -lmlx
-LIBS		+= -lft
-LIBS		+= -lgnl
-LIBS_PATH	= -L$(MLX)
-LIBS_PATH	+= -L$(LIBFT)
-LIBS_PATH	+= -L$(GNL)
+LIBS		= -lmlx -lft -lgnl
+LIBS_PATH	= -L$(MLX) -L$(LIBFT) -L$(GNL)
 
 	### DIRECTORY ###
 
@@ -74,7 +70,7 @@ art:
 			@tput setaf 2; cat .ascii_art/name; tput setaf default
 
 $(NAME):	$(OBJS)
-			$(CC) $(FLAGS) $(FRAMEWORK) $(LIBS_PATH) $(LIBS) -o $@ $(OBJS)
+			$(CC) $(FLAGS) $(FRAMEWORK) -o $@ $(OBJS) $(LIBS_PATH) $(LIBS)
 			@$(NL_TXT)
 			@$(END_TXT)
 
@@ -94,14 +90,12 @@ mlx:
 libft:
 			@$(LIBFT_TXT)
 			@make -C $(LIBFT)
-			@cp $(LIBFT)/libft.a .
 			@$(LIBFT_END_TXT)
 			@$(NL_TXT)
 
 gnl:
 			@$(GNL_TXT)
 			@make -C $(GNL)
-			@cp $(GNL)/libgnl.a .
 			@$(GNL_END_TXT)
 			@$(NL_TXT)
 
@@ -121,7 +115,7 @@ clean:
 
 fclean:		clean
 			@$(FCLEAN_TXT)
-			@rm -f libmlx.dylib libft.a libgnl.a
+			@rm -f libmlx.dylib
 			@rm -rf $(NAME)
 			@$(NL_TXT)
 
