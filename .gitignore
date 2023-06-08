@@ -3,15 +3,15 @@
 /.vscode/
 .DS_Store
 
-# Ignore minilibx files
-libmlx/**/*.o
-libmlx/**/*.swiftdoc
-libmlx/**/*.swiftmodule
-libmlx/**/*.swiftsourceinfo
+# Ignore libraries
+libft.a
 libmlx.dylib
+libgnl.a
 
-# Ignore libft obj
-/libft/*.o
+# Ignore libs objs
+libs/**/*.o
+libs/**/*.swiftdoc
+libs/**/*.swiftmodule
 
 # Ignore obj
 /objs/**/*.o

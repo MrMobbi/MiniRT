@@ -6,7 +6,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# include "../libmlx/mlx.h"
+# include "../libs/libmlx/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/gnl/get_next_line.h"
 # include "struct.h"
 # include "define.h"
 

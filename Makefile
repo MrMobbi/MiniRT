@@ -14,17 +14,18 @@ NAME		= minirt
 SRCS_PATH	= srcs
 OBJS_PATH	= objs
 INCS_PATH	= -Iincl
-MLX			= libmlx
+MLX			= libs/libmlx
+LIBFT		= libs/libft
+GNL			= libs/gnl
 
 	###	LIBS ###
 
 LIBS		= -lmlx
+LIBS		+= -lft
+LIBS		+= -lgnl
 LIBS_PATH	= -L$(MLX)
-
-	### INCLUDE ###
-
-#GNL			= srcs/gnl
-#LIBFT		= srcs/libft
+LIBS_PATH	+= -L$(LIBFT)
+LIBS_PATH	+= -L$(GNL)
 
 	### DIRECTORY ###
 
@@ -52,7 +53,11 @@ RESET		= \033[0m
 	### TEXTES ###
 
 MLX_TXT			= echo "$(CYAN)=== Compiling MLX ===$(RESET)"
+LIBFT_TXT		= echo "$(CYAN)=== Compiling LIBFT ===$(RESET)"
+GNL_TXT			= echo "$(CYAN)=== Compiling GNL ===$(RESET)"
 MLX_END_TXT		= echo "$(GREEN)=== MLX Compilated ===$(RESET)"
+LIBFT_END_TXT	= echo "$(GREEN)=== LIBFT Compilated ===$(RESET)"
+GNL_END_TXT		= echo "$(GREEN)=== GNL Compilated ===$(RESET)"
 START_TXT		= echo "$(CYAN)=== Compiling Project ===$(RESET)"
 END_TXT			= echo "$(GREEN)=== Project Compilated ===$(RESET)"
 CHARG_LINE_TXT	= echo "$(GREEN)█$(RESET)\c"
@@ -62,45 +67,64 @@ NL_TXT			= echo ""
 
 	### RULES ###
 
-all:		mlx tmp $(NAME)
+all:		libs tmp $(NAME)
 
 art:
 			@tput setaf 2; cat .ascii_art/projet; tput setaf default
 			@tput setaf 2; cat .ascii_art/name; tput setaf default
 
 $(NAME):	$(OBJS)
-			@$(CC) $(FLAGS) $(FRAMEWORK) $(LIBS_PATH) $(LIBS) -o $@ $(OBJS)
+			$(CC) $(FLAGS) $(FRAMEWORK) $(LIBS_PATH) $(LIBS) -o $@ $(OBJS)
 			@$(NL_TXT)
 			@$(END_TXT)
 
 tmp:
 			@mkdir -p objs
 
+libs:		mlx libft gnl
+			@$(START_TXT)
+
 mlx:
 			@$(MLX_TXT)
-			make -C $(MLX)
+			@make -C $(MLX)
 			@cp $(MLX)/libmlx.dylib .
 			@$(MLX_END_TXT)
 			@$(NL_TXT)
-			@$(START_TXT)
+
+libft:
+			@$(LIBFT_TXT)
+			@make -C $(LIBFT)
+			@cp $(LIBFT)/libft.a .
+			@$(LIBFT_END_TXT)
+			@$(NL_TXT)
+
+gnl:
+			@$(GNL_TXT)
+			@make -C $(GNL)
+			@cp $(GNL)/libgnl.a .
+			@$(GNL_END_TXT)
+			@$(NL_TXT)
+
+
 
 $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 					@mkdir -p $(@D)
-					@$(CC) $(FLAGS) $(INCS_PATH) -c $< -o $@
-					@$(CHARG_LINE_TXT)
+					$(CC) $(FLAGS) $(INCS_PATH) -c $< -o $@
 
 clean:
 			@$(CLEAN_TXT)
 			@tput setaf 1; cat .ascii_art/trash; tput setaf default
 			@rm -rf $(OBJS_PATH)
 			@make clean -C $(MLX)
+			@make fclean -C $(LIBFT)
+			@make fclean -C $(GNL)
 
 fclean:		clean
 			@$(FCLEAN_TXT)
-			@rm libmlx.dylib
+			@rm -f libmlx.dylib libft.a libgnl.a
 			@rm -rf $(NAME)
 			@$(NL_TXT)
 
 re:			fclean all
 
-.PHONY:		clean fclean re tmp libs all
+.PHONY:		clean fclean re tmp libs all libft
