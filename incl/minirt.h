@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <stdbool.h>
 
 # include "../libs/libmlx/mlx.h"
@@ -18,9 +19,12 @@
 //###########################################//
 //
 //		----- Check_Arguments.c -----
-bool check_arguments(int ac, char **av);
+bool check_arguments(int ac, char **av, t_minirt *rt);
 
 //    ----- Handle_Error.c -----
 bool  handle_error(int error);
+
+//    ----- Parsing.c -----
+int parsing(int fd, t_minirt *rt);
 
 #endif
