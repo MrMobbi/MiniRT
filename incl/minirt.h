@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # include "../libs/libmlx/mlx.h"
 # include "../libs/libft/libft.h"
@@ -12,6 +13,14 @@
 # include "struct.h"
 # include "define.h"
 
-void	print(void);
+//###########################################//
+//		===== PARSING DIRECTORY =====
+//###########################################//
+//
+//		----- Check_Arguments.c -----
+bool check_arguments(int ac, char **av);
+
+//    ----- Handle_Error.c -----
+bool  handle_error(int error);
 
 #endif
