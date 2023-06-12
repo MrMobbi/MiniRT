@@ -23,27 +23,31 @@ GNL			= libs/gnl
 LIBS		= -lmlx -lft -lgnl
 LIBS_PATH	= -L$(MLX) -L$(LIBFT) -L$(GNL)
 
-	### DIRECTORY ###
+	### SOURCES FILES ###
 
-PARSING_DIR	= $(SRCS_PATH)/parsing
+	# MAIN
+	
+MAIN_FILE	= main.c
 
-	### FILES TO OBJECT ###
+	# PARSING
 
-SRCS	= $(wildcard $(SRCS_PATH)/*.c)\
-		  $(wildcard $(PARSING_DIR)/*.c)
+PARSE_FILE	= check_arguments.c\
+			  handle_error.c\
+			  parsing.c
 
+	### OBJECT FILES ###
 
-OBJS	= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
+MAIN_FILE	:= $(addprefix $(OBJS_PATH)/, $(MAIN_FILE:.c=.o))
+PARSE_FILE	:= $(addprefix $(OBJS_PATH)/parsing/, $(PARSE_FILE:.c=.o))
+
+OBJS		:= $(MAIN_FILE)\
+			   $(PARSE_FILE)
 
 	### COLORS ###
 
 RED			= \033[1;31m
 GREEN		= \033[1;32m
-YELLOW		= \033[1;33m
-BLUE		= \033[1;34m
-VIOLET		= \033[1;35m
 CYAN		= \033[1;36m
-WHITE		= \033[1;37m
 RESET		= \033[0m
 
 	### TEXTES ###
