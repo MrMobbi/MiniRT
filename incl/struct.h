@@ -4,18 +4,22 @@
 
 //  all data
 typedef struct s_minirt {
-	struct t_matrice	*matrice;
+	struct s_matrice	*matrice;
 }						t_minirt;
 
 //  Matrice proto
 typedef struct s_matrice {
-	struct s_al	*ambient;	
-	struct s_l	*light;
-	struct s_c	*camera;
-	struct s_pl	*plane;
-	struct s_sp	*sphere;
-	struct s_cy	*cylinder;
-}				t_matrice;
+	bool				a;
+	bool				c;
+	bool				l;
+	bool				duplicate;
+	struct s_al			*ambient;	
+	struct s_l			*light;
+	struct s_c			*camera;
+	struct s_pl			*plane;
+	struct s_list_sp	*sphere;
+	struct s_list_cy	*cylinder;
+}						t_matrice;
 
 //  Ambient Light proto
 typedef struct s_al {
@@ -45,20 +49,22 @@ typedef struct s_pl {
 }					t_pl;
 
 //  Sphere proto
-typedef struct s_sp {
-	struct s_3v		*position;
-	struct s_rgb	*rgb;
-	float			diameter;
-}					t_sp;
+typedef struct s_list_sp {
+	struct s_3v			*position;
+	struct s_rgb		*rgb;
+	float				diameter;
+	struct s_list_sp	*next;
+}						t_list_sp;
 
-//  Cylindef proto
-typedef struct s_cy {
-	struct s_3v		*position;
-	struct s_3v		*vector;
-	struct s_rgb	*rgb;
-	float			diameter;
-	float			height;
-}					t_cy;
+//  Cylinder proto
+typedef struct s_list_cy {
+	struct s_3v			*position;
+	struct s_3v			*vector;
+	struct s_rgb		*rgb;
+	float				diameter;
+	float				height;
+	struct s_list_cy	*next;
+}						t_list_cy;
 
 //  Position in 3D proto
 typedef struct s_3v {

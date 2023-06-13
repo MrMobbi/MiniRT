@@ -1,7 +1,7 @@
 
 	### COMPILATION ###
 
-CC			= gcc -g -fsanitize=address
+CC			= gcc -g #-fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 FRAMEWORK	= -framework OpenGL -framework AppKit
 
@@ -33,7 +33,11 @@ MAIN_FILE	= main.c
 
 PARSE_FILE	= check_arguments.c\
 			  handle_error.c\
-			  parsing.c
+			  init_matrice.c\
+			  light_attribute.c\
+			  object_attribute.c\
+			  parsing.c\
+			  scene_attribute.c
 
 	### OBJECT FILES ###
 

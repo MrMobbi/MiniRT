@@ -1,12 +1,16 @@
 
 #include "minirt.h"
 
+/*
+ * return 1 in case of wrong argument
+ */
+
 int	main(int ac, char **av)
 {
 	t_minirt	rt;
 
 	if (check_arguments(ac, av, &rt) == false)
 		return (1);
-	printf("%zu\n", ft_strlen("coucou mathias"));
+	free(rt.matrice);
 	return (0);
 }

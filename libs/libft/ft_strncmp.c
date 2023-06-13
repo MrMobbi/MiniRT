@@ -6,7 +6,7 @@
 /*   By: synicole <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:49:57 by synicole          #+#    #+#             */
-/*   Updated: 2022/10/13 15:49:59 by synicole         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:44:55 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	str2 = (unsigned char *) s2;
 	i = 0;
 	if (n == 0)
-		return (0);
+		return (1);
 	while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2 && i < n - 1)
 	{
 		str1++;

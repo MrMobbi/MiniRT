@@ -1,6 +1,10 @@
 
 #include "minirt.h"
 
+/*
+ * Will check if the file has been opened
+ */
+
 static bool	is_map_open(int fd)
 {
 	if (fd == -1)
@@ -12,32 +16,35 @@ static bool	is_map_open(int fd)
 		return (true);
 }
 
+/*
+ * Will check if the file finish by a ".rt"
+ */
+
 static bool	is_file_rt(char *str)
 {
-	while (*str != '\0')
-	{
-		if (ft_strncmp(str, ".rt", ft_strlen(str)) == 0)
-			return (true);
-		str++;
-	}
+	if (ft_strlen(str) < 4)
+		return (false);
+	if (ft_strncmp(&str[ft_strlen(str) - 3], ".rt", 3) == 0)
+		return (true);
 	return (false);
 }
+
+/*
+ * TRUE arguments are valid
+ * FALSE arguments are not valid
+ */
 
 bool	check_arguments(int ac, char **av, t_minirt *rt)
 {
 	int	fd;
-	int	code_error;
 
 	fd = open(av[1], O_RDONLY);
-	code_error = 0;
 	if (ac != 2)
 		return (handle_error(1));
 	if (is_map_open(fd) == false)
 		return (handle_error(2));
 	if (is_file_rt(av[1]) == false)
 		return (handle_error(3));
-	code_error = parsing(fd, rt);
-	if (code_error != 0)
-		return (handle_error(code_error));
+	rt->matrice = init_matrice(fd);
 	return (true);
 }
