@@ -9,7 +9,6 @@ int	main(int ac, char **av)
 {
 	t_minirt	rt;
 
-	printf("\n");
 	if (check_arguments(ac, av, &rt) == false)
 		return (1);
 	free(rt.matrice);
